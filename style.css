@@ -37,6 +37,11 @@ html, body {
 	line-height: var(--app-title-line-height);
 }
 
+.restart-button {
+  display: flex;
+  align-items: center;
+}
+
 .content {
 	display: flex;
 	flex-direction: column;
@@ -61,13 +66,14 @@ html, body {
 }
 
 .cards-container > div {
-  border: 5px solid #E0E1E1;
 	border-radius: 20%;
 	width: 100%;
 	height: 100%;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .card {
+  cursor: pointer;
 	background: red;
 }
 
