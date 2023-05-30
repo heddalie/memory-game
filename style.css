@@ -3,10 +3,10 @@
 }
 
 :root {
-	--content-padding: 16px;
-	--app-header-vertical-padding: 8px;
-	--app-header-horizontal-padding: 16px;
-	--app-title-line-height: 40px;
+	--content-padding: 20px;
+	--app-header-vertical-padding: 75px;
+  --app-header-horizontal-padding: 10px;
+	--app-title-line-height: 10px;
 	--card-size: min(calc((100vw - var(--content-padding) * 2) / var(--card-columns)), calc((100vh - var(--content-padding) * 2 - var(--app-header-vertical-padding) * 2 - var(--app-title-line-height)) / var(--card-rows)));
 }
 
@@ -27,11 +27,13 @@ html, body {
 	padding: var(--app-header-vertical-padding) var(--app-header-horizontal-padding);
 	display: flex;
 	color: black;
+  justify-content: center;
+  align-items: center;
 }
 
 .app-title {
-	font-weight: 500;
-	font-size: 32px;
+	font-weight: 700;
+	font-size: 40px;
 	line-height: var(--app-title-line-height);
 }
 
@@ -55,12 +57,12 @@ html, body {
 	display: flex;
 	max-width: 100%;
 	max-height: 100%;
-	padding: 8px;
+	padding: 5%;
 }
 
 .cards-container > div {
-	border: 1px solid #000;
-	border-radius: 10%;
+  border: 5px solid #E0E1E1;
+	border-radius: 20%;
 	width: 100%;
 	height: 100%;
 }
