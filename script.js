@@ -7,26 +7,26 @@ let rows = 5;
 //ERR_FILE_NOT_FOUND
 function generateBackImages() {
     const backImages = [
-        'coding-1/memory-game/symbols/Symbol-1.png',
-        'coding-1/memory-game/symbols/Symbol-2.png',
-        'coding-1/memory-game/symbols/Symbol-3.png',
-        'coding-1/memory-game/symbols/Symbol-4.png',
-        'coding-1/memory-game/symbols/Symbol-5.png',
-        'coding-1/memory-game/symbols/Symbol-6.png',
-        'coding-1/memory-game/symbols/Symbol-7.png',
-        'coding-1/memory-game/symbols/Symbol-8.png',
-        'coding-1/memory-game/symbols/Symbol-9.png',
-        'coding-1/memory-game/symbols/Symbol-10.png',
-        'coding-1/memory-game/symbols/Symbol-11.png',
-        'coding-1/memory-game/symbols/Symbol-12.png',
-        'coding-1/memory-game/symbols/Symbol-13.png',
-        'coding-1/memory-game/symbols/Symbol-14.png',
-        'coding-1/memory-game/symbols/Symbol-15.png',
-        'coding-1/memory-game/symbols/Symbol-16.png',
-        'coding-1/memory-game/symbols/Symbol-17.png',
-        'coding-1/memory-game/symbols/Symbol-18.png',
-        'coding-1/memory-game/symbols/Symbol-19.png',
-        'coding-1/memory-game/symbols/Symbol-20.png'
+        'symbols/Symbol-1.png',
+        'symbols/Symbol-2.png',
+        'symbols/Symbol-3.png',
+        'symbols/Symbol-4.png',
+        'symbols/Symbol-5.png',
+        'symbols/Symbol-6.png',
+        'symbols/Symbol-7.png',
+        'symbols/Symbol-8.png',
+        'symbols/Symbol-9.png',
+        'symbols/Symbol-10.png',
+        'symbols/Symbol-11.png',
+        'symbols/Symbol-12.png',
+        'symbols/Symbol-13.png',
+        'symbols/Symbol-14.png',
+        'symbols/Symbol-15.png',
+        'symbols/Symbol-16.png',
+        'symbols/Symbol-17.png',
+        'symbols/Symbol-18.png',
+        'symbols/Symbol-19.png',
+        'symbols/Symbol-20.png'
     ];
     return backImages;
 }
@@ -43,11 +43,11 @@ class Card {
         this.cardElement.addEventListener('click', onClick);
 
         this.cardBack = document.createElement('div');
-        this.cardBack.classList.add('card');
+        this.cardBack.classList.add('card', 'card-back');
         this.cardBack.style.backgroundImage = `url(${backImage})`;
 
         this.cardFront = document.createElement('div');
-        this.cardFront.classList.add('symbol', 'card');
+        this.cardFront.classList.add('symbol', 'card', 'card-front');
         this.cardFront.innerHTML = '<i class="fa-solid fa-' + '"></i>';
 
         this.cardElement.appendChild(this.cardBack);
@@ -61,8 +61,8 @@ class Card {
     }
 
     updateDisplay() {
-        this.cardBack.style.display = this.show ? 'none' : 'block';
-        this.cardFront.style.display = this.show ? 'flex' : 'none';
+        this.cardBack.style.display = this.show ? 'block' : 'none';
+        this.cardFront.style.display = this.show ? 'none' : 'flex';
     }
 
     flip() {
