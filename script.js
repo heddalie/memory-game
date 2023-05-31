@@ -1,57 +1,40 @@
 console.log('JavaScript code loaded');
+// i'll keep this until i don't have problems
 
+let columns = 8;
+let rows = 5;
+
+//ERR_FILE_NOT_FOUND
 function generateBackImages() {
     const backImages = [
-            'coding-1/memory-game/symbols/Symbol-1.png',
-            'coding-1/memory-game/symbols/Symbol-2.png',
-            'coding-1/memory-game/symbols/Symbol-3.png',
-            'coding-1/memory-game/symbols/Symbol-4.png',
-            'coding-1/memory-game/symbols/Symbol-5.png',
-            'coding-1/memory-game/symbols/Symbol-6.png',
-            'coding-1/memory-game/symbols/Symbol-7.png',
-            'coding-1/memory-game/symbols/Symbol-8.png',
-            'coding-1/memory-game/symbols/Symbol-9.png',
-            'coding-1/memory-game/symbols/Symbol-10.png',
-            'coding-1/memory-game/symbols/Symbol-11.png',
-            'coding-1/memory-game/symbols/Symbol-12.png',
-            'coding-1/memory-game/symbols/Symbol-13.png',
-            'coding-1/memory-game/symbols/Symbol-14.png',
-            'coding-1/memory-game/symbols/Symbol-15.png',
-            'coding-1/memory-game/symbols/Symbol-16.png',
-            'coding-1/memory-game/symbols/Symbol-17.png',
-            'coding-1/memory-game/symbols/Symbol-18.png',
-            'coding-1/memory-game/symbols/Symbol-19.png',
-            'coding-1/memory-game/symbols/Symbol-20.png'
-        ];
-        return backImages;
-    }
+        'coding-1/memory-game/symbols/Symbol-1.png',
+        'coding-1/memory-game/symbols/Symbol-2.png',
+        'coding-1/memory-game/symbols/Symbol-3.png',
+        'coding-1/memory-game/symbols/Symbol-4.png',
+        'coding-1/memory-game/symbols/Symbol-5.png',
+        'coding-1/memory-game/symbols/Symbol-6.png',
+        'coding-1/memory-game/symbols/Symbol-7.png',
+        'coding-1/memory-game/symbols/Symbol-8.png',
+        'coding-1/memory-game/symbols/Symbol-9.png',
+        'coding-1/memory-game/symbols/Symbol-10.png',
+        'coding-1/memory-game/symbols/Symbol-11.png',
+        'coding-1/memory-game/symbols/Symbol-12.png',
+        'coding-1/memory-game/symbols/Symbol-13.png',
+        'coding-1/memory-game/symbols/Symbol-14.png',
+        'coding-1/memory-game/symbols/Symbol-15.png',
+        'coding-1/memory-game/symbols/Symbol-16.png',
+        'coding-1/memory-game/symbols/Symbol-17.png',
+        'coding-1/memory-game/symbols/Symbol-18.png',
+        'coding-1/memory-game/symbols/Symbol-19.png',
+        'coding-1/memory-game/symbols/Symbol-20.png'
+    ];
+    return backImages;
+}
 
-const symbols = [
-    'symbol-1',
-    'symbol-2',
-    'symbol-3',
-    'symbol-4',
-    'symbol-5',
-    'symbol-6',
-    'symbol-7',
-    'symbol-8',
-    'symbol-9',
-    'symbol-10',
-    'symbol-11',
-    'symbol-12',
-    'symbol-13',
-    'symbol-14',
-    'symbol-15',
-    'symbol-16',
-    'symbol-17',
-    'symbol-18',
-    'symbol-19',
-    'symbol-20'
-];
 
+// cards are clickable, but file error. cards compare incorrectly
 class Card {
-    constructor(symbol, backImage, onClick) {
-        this.symbol = symbol;
+    constructor(backImage, onClick) {
         this.show = false;
         this.onClick = onClick;
 
@@ -64,8 +47,8 @@ class Card {
         this.cardBack.style.backgroundImage = `url(${backImage})`;
 
         this.cardFront = document.createElement('div');
-        this.cardFront.classList.add('symbol');
-        this.cardFront.innerHTML = '<i class="fa-solid fa-' + symbol + '"></i>';
+        this.cardFront.classList.add('symbol', 'card');
+        this.cardFront.innerHTML = '<i class="fa-solid fa-' + '"></i>';
 
         this.cardElement.appendChild(this.cardBack);
         this.cardElement.appendChild(this.cardFront);
@@ -95,31 +78,33 @@ class Card {
 }
 
 class CardGrid {
-    constructor(numberOfColumns, numberOfRows, backImages) {
+    constructor(numberOfColumns, numberOfRows, backImages, restartCallback) {
         const root = document.documentElement;
         root.style.setProperty('--card-columns', numberOfColumns);
         root.style.setProperty('--card-rows', numberOfRows);
 
-        const deck = symbols.concat(symbols);
         const imagesCopy = backImages.slice();
 
         this.cards = [];
         this.selected = [];
         this.solveTimer = null;
+        this.restartCallback = restartCallback;
 
         for (let i = 0; i < numberOfRows; i++) {
             for (let j = 0; j < numberOfColumns; j++) {
-                const deckIndex = Math.floor(Math.random() * deck.length);
-                const symbol = deck[deckIndex];
-                deck.splice(deckIndex, 1);
-
                 const backIndex = Math.floor(Math.random() * imagesCopy.length);
                 const backImage = imagesCopy[backIndex];
                 imagesCopy.splice(backIndex, 1);
 
-                const card = new Card(symbol, backImage, () => this.cardFlip(card));
+                const card = new Card(backImage, () => this.cardFlip(card));
                 this.cards.push(card);
             }
+        }
+    }
+
+    restart() {
+        if(typeof this.restartCallback === 'function') {
+            this.restartCallback();
         }
     }
 
@@ -164,19 +149,30 @@ class CardGrid {
     }
 }
 
-window.addEventListener('load', () => {
-    let columns = 8;
-    let rows = 5;
+function restartGame() {
+    const cardsGrid = document.querySelector('.cards');
+    cardsGrid.innerHTML = '';
 
+    const backImages = generateBackImages();
+    const cards = new CardGrid(columns, rows, backImages, restartGame);
+    cards.attachTo(cardsGrid);
+}
+
+window.addEventListener('load', () => {
     if (screen.orientation.type === 'portrait-primary' || screen.orientation.type === 'portrait-secondary') {
         columns = 5;
         rows = 8;
     }
 
     const cardsGrid = document.querySelector('.cards');
+    const restartButton = document.querySelector('.restart-button');
 
     const backImages = generateBackImages();
 
-    const cards = new CardGrid(columns, rows, backImages);
+    const cards = new CardGrid(columns, rows, backImages, restartGame);
     cards.attachTo(cardsGrid);
-})
+
+    restartButton.addEventListener('click', () => {
+        cards.restart();
+    });
+});
