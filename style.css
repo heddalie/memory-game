@@ -7,44 +7,65 @@ body {
 	font-family: 'Gill Sans';
 	text-align: center;
 	height: 100vh;
-  }
-  
-  .restart-button {
+}
+
+.restart-button {
 	background: none;
 	border: none;
 	cursor: pointer;
 	padding: 0;
-	padding-top: 10px;
-  }
-  
-  .restart-button img {
+	padding-top: 50px;
+}
+
+.restart-button img {
 	width: 30px;
 	height: 30px;
-  }
-  
-  h1 {
+}
+
+h1 {
 	text-align: center;
 	font-size: 36px;
-  }
-  
-  #score,
-  #timer {
+}
+
+#score,
+#timer {
 	margin-bottom: 10px;
-  }
-  
-  #grid-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
+}
+
+#grid-container {
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+	gap: 10px;
 	max-width: 90vw;
 	max-height: 90vh;
-  }
-  
-  .grid-item {
+	justify-items: center;
+	align-items: center;
+	padding-top: 50px;
+}
+
+.grid-item {
 	background-color: lightblue;
 	border: 1px solid black;
-	flex: 0 0 calc(20% - 10px);
-	padding-top: calc(20% - 10px);
 	margin: 5px;
-  } 
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 80px;
+	height: 80px;
+}
+
+.grid-item::before {
+	content: "";
+	padding-bottom: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.grid-item>* {
+	max-width: 90%;
+	max-height: 90%;
+	margin: auto;
+	vertical-align: middle;
+}
