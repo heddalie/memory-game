@@ -1,99 +1,56 @@
-/* setting up the document and the layers/groups */
 body {
 	margin: 0;
 	padding: 0;
-	font-family: 'Gill Sans';
-}
-
-.game {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
-}
-
-
-/* styling the header */
-.game-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 10pc 20px;
-}
-
-.game-title {
-	font-weight: 700;
-	font-size: 40px;
-	color: black;
-}
-
-
-/* styling the resize button */
-.restart-button {
+	font-family: 'Gill Sans';
+	text-align: center;
+	height: 100vh; /* Ensures the body takes up the full viewport height */
+  }
+  
+  .restart-button {
 	background: none;
 	border: none;
 	cursor: pointer;
 	padding: 0;
-
-}
-
-.restart-button img {
+	padding-top: 10px;
+  }
+  
+  .restart-button img {
 	width: 30px;
 	height: 30px;
-}
-
-
-/* styling the grid and the grid items */
-.grid-container {
+  }
+  
+  h1 {
+	text-align: center;
+	font-size: 36px;
+  }
+  
+  #score,
+  #timer {
+	margin-bottom: 10px;
+  }
+  
+  .container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%; /* Allows the container to take up the full height of its parent (the body) */
+  }
+  
+  #grid-container {
 	display: grid;
 	grid-template-columns: repeat(8, 1fr);
 	grid-template-rows: repeat(5, 1fr);
-	gap: 10px;
-	max-width: 800px;
-	width: 100vw;
-	padding: 20px;
-	box-sizing: border-box;
-	margin-top: 20px;
-	overflow: hidden;
-}
-
-.grid-item {
-	background-color: red;
-	border-radius: 30%;
-}
-
-
-/* makes layouts for different screen sizes */
-@media (max-width: 800px) {
-	.grid-container {
-		grid-template-columns: repeat(4, 1fr);
-		grid-template-rows: repeat(10, 1fr);
-	}
-}
-
-@media (max-width: 600px) {
-	.grid-container {
-		grid-template-columns: repeat(3, 1fr);
-		grid-template-rows: repeat(13, 1fr);
-	}
-}
-
-@media (max-width: 800px) {
-	.grid-container {
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(20, 1fr);
-	}
-}
-
-
-/* card front and back styling */
-.card-front {
-	cursor: pointer;
-	background: red;
-}
-
-.card-back {
-	background-size: cover;
-	background-position: center;
-}
+	gap: 5px;
+  }
+  
+  .grid-item {
+	background-color: lightblue;
+	border: 1px solid black;
+	aspect-ratio: 1/1; /* Ensures the grid items are squared */
+	padding-bottom: 100%; /* Percentage-based padding maintains shape */
+  }
