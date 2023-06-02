@@ -3,11 +3,11 @@
 }
 
 :root {
-	--content-padding: 20px;
-	--app-header-vertical-padding: 75px;
-	--app-header-horizontal-padding: 10px;
-	--app-title-line-height: 10px;
-	--card-size: min(calc((100vw - var(--content-padding) * 2) / var(--card-columns)), calc((100vh - var(--content-padding) * 2 - var(--app-header-vertical-padding) * 2 - var(--app-title-line-height)) / var(--card-rows)));
+    --content-padding: 20px;
+    --app-header-vertical-padding: 75px;
+    --app-header-horizontal-padding: 10px;
+    --app-title-line-height: 10px;
+    --card-size: min(calc((100vw - var(--content-padding) * 2) / var(--card-columns)), calc((100vh - var(--content-padding) * 2 - var(--app-header-vertical-padding) * 2 - var(--app-title-line-height)) / var(--card-rows)));
 }
 
 html,
@@ -15,32 +15,49 @@ body {
 	height: 100%;
 	margin: 0;
 	font-family: 'Gill Sans';
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .app {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
 	height: 100%;
 }
 
 .app-header {
-	flex: 0 1 auto;
-	padding: var(--app-header-vertical-padding) var(--app-header-horizontal-padding);
 	display: flex;
-	color: black;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
 }
 
 .app-title {
 	font-weight: 700;
 	font-size: 40px;
-	line-height: var(--app-title-line-height);
+	color: black;
 }
 
 .restart-button {
 	display: flex;
+	justify-content: center;
 	align-items: center;
+	flex: 1 1 auto;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+
+}
+
+.restart-button img {
+	width: 30px;
+	height: 30px;
 }
 
 .content {
@@ -48,21 +65,26 @@ body {
 	flex-direction: column;
 	align-items: center;
 	flex: 1 1 auto;
-	padding: var(--content-padding);
+	padding: 20px;
 	overflow: hidden;
+	justify-content: center;
 }
 
 .cards {
-	flex: 1 1 auto;
-	display: grid;
-	grid-template-columns: repeat(var(--card-columns), var(--card-size));
-	grid-template-rows: repeat(var(--card-rows), var(--card-size));
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	max-width: 100%;
+	gap: 10px;
 }
 
 .cards-container {
 	display: flex;
-	max-width: 100%;
-	max-height: 100%;
+	align-items: center;
+	justify-content: center;
+	width: var(--card-size);
+	height: var(--card-size);
 	padding: 5%;
 }
 
@@ -71,6 +93,7 @@ body {
 	width: 100%;
 	height: 100%;
 	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+	background-color: red;
 }
 
 .card-front {

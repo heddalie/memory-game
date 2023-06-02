@@ -1,38 +1,26 @@
 console.log('JavaScript code loaded');
 // i'll keep this until i don't have problems
 
+
+// referred to in window.addEventListener() later
 let columns = 8;
 let rows = 5;
 
-//ERR_FILE_NOT_FOUND
+
+// adding pngs for the backside of cards
 function generateBackImages() {
-    const backImages = [
-        'symbols/Symbol-1.png',
-        'symbols/Symbol-2.png',
-        'symbols/Symbol-3.png',
-        'symbols/Symbol-4.png',
-        'symbols/Symbol-5.png',
-        'symbols/Symbol-6.png',
-        'symbols/Symbol-7.png',
-        'symbols/Symbol-8.png',
-        'symbols/Symbol-9.png',
-        'symbols/Symbol-10.png',
-        'symbols/Symbol-11.png',
-        'symbols/Symbol-12.png',
-        'symbols/Symbol-13.png',
-        'symbols/Symbol-14.png',
-        'symbols/Symbol-15.png',
-        'symbols/Symbol-16.png',
-        'symbols/Symbol-17.png',
-        'symbols/Symbol-18.png',
-        'symbols/Symbol-19.png',
-        'symbols/Symbol-20.png'
-    ];
+    const numberOfSymbols = 20;
+    const backImages = [];
+
+    for (let i = 1; i<= numberOfSymbols; i++){
+        backImages.push(`symbols/Symbol-${i}.png`);
+    }
+
     return backImages;
 }
 
 
-// cards are clickable, but file error. cards compare incorrectly
+// cards are clickable adn compares to each other but layout is wrong now
 class Card {
     constructor(backImage, onClick) {
         this.show = false;
@@ -90,6 +78,9 @@ class CardGrid {
         this.solveTimer = null;
         this.restartCallback = restartCallback;
 
+        const cardsContainer = document.createElement('div');
+        cardsContainer.classList.add('cards');
+
         for (let i = 0; i < numberOfRows; i++) {
             for (let j = 0; j < numberOfColumns; j++) {
                 const backIndex = Math.floor(Math.random() * imagesCopy.length);
@@ -97,9 +88,13 @@ class CardGrid {
                 imagesCopy.splice(backIndex, 1);
 
                 const card = new Card(backImage, () => this.cardFlip(card));
+                card.attachTo(cardsContainer);
                 this.cards.push(card);
             }
         }
+
+        const container = document.querySelector('.cards');
+        container.appendChild(cardsContainer);
     }
 
     restart() {
@@ -129,7 +124,7 @@ class CardGrid {
     }
 
     checkSelection() {
-        if (this.selected[0].symbol === this.selected[1].symbol) {
+        if (this.selected[0].cardBack.style.backgroundImage === this.selected[1].cardBack.style.backgroundImage) {
             for (const card of this.selected) {
                 card.disable();
 
@@ -159,7 +154,7 @@ function restartGame() {
 }
 
 window.addEventListener('load', () => {
-    if (screen.orientation.type === 'portrait-primary' || screen.orientation.type === 'portrait-secondary') {
+    if (window.innerWidth < window.innerHeight) {
         columns = 5;
         rows = 8;
     }
