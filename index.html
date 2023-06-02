@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
   <title>MEMORY game</title>
-  <link href="style.css" rel="stylesheet" >
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
@@ -12,12 +11,16 @@
     <button class="restart-button">
       <img src="symbols/restartButton.png" alt="Restart Button">
     </button>
-
     <h1>MEMORY</h1>
-    <div id="score">Score: 0</div>
-    <div id="timer">Timer: 0</div>
+    <div id="score-timer-container">
+      <div id="score">Score: 0</div>
+      <div id="timer">Timer: 0</div>
+    </div>
 
     <div id="grid-container">
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
