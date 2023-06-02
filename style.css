@@ -1,15 +1,36 @@
-.game-title {
+/* setting up the document and the layers/groups */
+body {
+	margin: 0;
+	padding: 0;
 	font-family: 'Gill Sans';
+}
+
+.game {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+
+/* styling the header */
+.game-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10pc 20px;
+}
+
+.game-title {
 	font-weight: 700;
 	font-size: 40px;
 	color: black;
 }
 
+
+/* styling the resize button */
 .restart-button {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex: 1 1 auto;
 	background: none;
 	border: none;
 	cursor: pointer;
@@ -22,44 +43,51 @@
 	height: 30px;
 }
 
+
+/* styling the grid and the grid items */
 .grid-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-content: flex-start;
-	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+	gap: 10px;
 	max-width: 800px;
+	width: 100vw;
+	padding: 20px;
+	box-sizing: border-box;
+	margin-top: 20px;
+	overflow: hidden;
 }
 
 .grid-item {
 	background-color: red;
 	border-radius: 30%;
-	width: calc(20% - 10px);
-	padding-bottom: calc(20% - 10px);
-	margin-bottom: 10px;
 }
 
+
+/* makes layouts for different screen sizes */
 @media (max-width: 800px) {
-	.grid-item {
-		width: calc(25% - 10px);
-		padding-bottom: calc(25% - 10px);
+	.grid-container {
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: repeat(10, 1fr);
 	}
 }
 
 @media (max-width: 600px) {
-	.grid-item {
-		width: calc(33.33% - 10px);
-		padding-bottom: calc(33.33% - 10px);
+	.grid-container {
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(13, 1fr);
 	}
 }
 
-@media (max-width: 400px) {
-	.grid-item {
-		width: calc(50% - 10px);
-		padding-bottom: calc(50% - 10px);
+@media (max-width: 800px) {
+	.grid-container {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(20, 1fr);
 	}
 }
 
+
+/* card front and back styling */
 .card-front {
 	cursor: pointer;
 	background: red;
