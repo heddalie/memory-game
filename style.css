@@ -4,10 +4,9 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
 	font-family: 'Gill Sans';
 	text-align: center;
-	height: 100vh; /* Ensures the body takes up the full viewport height */
+	height: 100vh;
   }
   
   .restart-button {
@@ -33,24 +32,19 @@ body {
 	margin-bottom: 10px;
   }
   
-  .container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100%; /* Allows the container to take up the full height of its parent (the body) */
-  }
-  
   #grid-container {
-	display: grid;
-	grid-template-columns: repeat(8, 1fr);
-	grid-template-rows: repeat(5, 1fr);
-	gap: 5px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	max-width: 90vw;
+	max-height: 90vh;
   }
   
   .grid-item {
 	background-color: lightblue;
 	border: 1px solid black;
-	aspect-ratio: 1/1; /* Ensures the grid items are squared */
-	padding-bottom: 100%; /* Percentage-based padding maintains shape */
-  }
+	flex: 0 0 calc(20% - 10px);
+	padding-top: calc(20% - 10px);
+	margin: 5px;
+  } 
