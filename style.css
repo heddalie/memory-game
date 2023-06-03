@@ -14,7 +14,7 @@ body {
 	border: none;
 	cursor: pointer;
 	padding: 0;
-	padding-top: 50px;
+	padding-top: 30px;
 }
 
 .restart-button img {
@@ -55,7 +55,7 @@ h1 {
 	max-height: 90vh;
 	justify-items: center;
 	align-items: center;
-	padding-top: 50px;
+	padding-top: 30px;
 }
 
 .grid-item {
@@ -78,7 +78,7 @@ h1 {
 	vertical-align: middle;
 }
 
-.grid-item>* {
+.grid-item > * {
 	max-width: 90%;
 	max-height: 90%;
 	margin: auto;
