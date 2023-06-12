@@ -46,41 +46,55 @@ h1 {
 	margin-left: 5px;
 }
 
+
 #grid-container {
-	display: grid;
-	grid-template-columns: repeat(8, 1fr);
-	grid-template-rows: repeat(5, 1fr);
-	gap: 10px;
-	max-width: 90vw;
-	max-height: 90vh;
-	justify-items: center;
-	align-items: center;
-	padding-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 10px;
+    max-width: 90vw;
+    max-height: 90vh;
+    justify-items: center;
+    align-items: center;
+    padding-top: 30px;
 }
 
 .grid-item {
-	background-color: lightblue;
-	border: 1px solid black;
-	margin: 5px;
-	flex-grow: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 80px;
-	height: 80px;
-	cursor: pointer;
+    background-color: lightblue;
+    border: 1px solid black;
+    margin: 5px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
 }
 
 .grid-item::before {
-	content: "";
-	padding-bottom: 100%;
-	display: inline-block;
-	vertical-align: middle;
+    content: "";
+    padding-bottom: 100%;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .grid-item > * {
-	max-width: 90%;
-	max-height: 90%;
-	margin: auto;
-	vertical-align: middle;
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+    vertical-align: middle;
+}
+
+@media screen and (max-width: 900px) {
+	
+	#grid-container {
+		gap: 5px;
+		padding-top: 30px;
+	}
+
+	.grid-item {
+		width: 40px;
+		height: 40px;
+	}
 }
