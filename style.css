@@ -46,48 +46,59 @@ h1 {
 	margin-left: 5px;
 }
 
-
 #grid-container {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: 10px;
-    max-width: 90vw;
-    max-height: 90vh;
-    justify-items: center;
-    align-items: center;
-    padding-top: 30px;
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+	gap: 10px;
+	max-width: 90vw;
+	max-height: 90vh;
+	justify-items: center;
+	align-items: center;
+	padding-top: 30px;
 }
 
-.grid-item {
-    background-color: lightblue;
-    border: 1px solid black;
-    margin: 5px;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
+.card {
+	position: relative;
+	width: 80px;
+	height: 80px;
+	border-radius: 20%;
+	cursor: pointer;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+	background-color: red;
 }
 
-.grid-item::before {
-    content: "";
-    padding-bottom: 100%;
-    display: inline-block;
-    vertical-align: middle;
+.card.flip .back-side {
+	transform: rotateY(180deg);
+	visibility: visible;
 }
 
-.grid-item > * {
-    max-width: 90%;
-    max-height: 90%;
-    margin: auto;
-    vertical-align: middle;
+.card .front-side,
+.card .back-side {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.card .front-side {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: red;
+	backface-visibility: hidden;
+}
+
+.card .back-side {
+	background-size: cover;
+	background-position: center;
+	background-color: white;
 }
 
 @media screen and (max-width: 900px) {
-	
 	#grid-container {
 		gap: 5px;
 		padding-top: 30px;
