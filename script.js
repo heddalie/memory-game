@@ -63,16 +63,16 @@ for (let i = 0; i < cards.length; i++) {
 function createCard(symbol) {
   const card = document.createElement('div');
   card.classList.add('card');
-  
+
   const frontSide = document.createElement('div');
   frontSide.classList.add('front-side');
   card.appendChild(frontSide);
-  
+
   const backSide = document.createElement('div');
   backSide.classList.add('back-side');
   backSide.style.backgroundImage = `url(${symbol})`;
   card.appendChild(backSide);
-  
+
   /* checks if the card is not flipped
   number of openend cards is < 2 
   card is flipped */
@@ -92,7 +92,7 @@ function createCard(symbol) {
       openedCards.splice(openedCards.indexOf(card), 1);
     }
   });
-  
+
   return card;
 }
 
@@ -114,11 +114,9 @@ function checkMatchingCards() {
     card1.classList.add('matched');
     card2.classList.add('matched');
 
+    //overlay after winning a game
     if (score === cards.length) {
-      setTimeout(function () {
-        alert('Congratulations! You won the game! Restart game?');
-        restartGame();
-      }, 500);
+      showOverlay();
     }
   } else {
     setTimeout(function () {
@@ -170,12 +168,16 @@ function restartGame() {
   timerStarted = false;
   timerValue.innerHTML = "<span>Time:</span> 00:00";
 
+  //shuffle
   shuffle(cards);
 
   for (let i = 0; i < cards.length; i++) {
     const card = createCard(cards[i]);
     gridContainer.appendChild(card);
   }
+
+  //hide overlay when restarting the game
+  hideOverlay();
 }
 
 
@@ -185,4 +187,26 @@ function shuffle(array) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
+}
+
+//overlay
+const overlayContainer = document.getElementById("overlay-container");
+const overlayRestartButton = document.getElementById("overlay-restart");
+
+// Add event listener to restart button in overlay
+overlayRestartButton.addEventListener("click", restartGame);
+
+// Show overlay function
+function showOverlay() {
+  overlayContainer.style.display = "flex";
+}
+
+// Hide overlay function
+function hideOverlay() {
+  overlayContainer.style.display = "none";
+}
+
+// Show overlay if score equals total number of cards
+if (score === cards.length) {
+  showOverlay();
 }

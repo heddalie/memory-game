@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>MEMORY game</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
   <div class="restart">
     <button class="restart-button">
@@ -18,6 +20,17 @@
 
   <div id="grid-container"></div>
 
+  <div id="overlay-container">
+    <div id="overlay-content">
+      <h2>CONGRATULATIONS</h2>
+      <p>You won!</p>
+      <button id="overlay-restart" class="restart-button">
+        <img src="symbols/restartButton.png" alt="Restart Button">
+      </button>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
+
 </html>
