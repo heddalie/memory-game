@@ -1,3 +1,4 @@
+/* styling the body */
 body {
 	margin: 0;
 	padding: 0;
@@ -9,6 +10,8 @@ body {
 	height: 100vh;
 }
 
+
+/* style restart button */
 .restart-button {
 	background: none;
 	border: none;
@@ -22,11 +25,16 @@ body {
 	height: 30px;
 }
 
+
+/* styling header */
 h1 {
 	text-align: center;
 	font-size: 36px;
 }
 
+
+/* styling score and timer 
+i want them next to each other */
 #score-timer-container {
 	display: flex;
 	align-items: center;
@@ -46,6 +54,9 @@ h1 {
 	margin-left: 5px;
 }
 
+
+/* grid container
+sets columns to 8 and rows to 5 */
 #grid-container {
 	display: grid;
 	grid-template-columns: repeat(8, 1fr);
@@ -58,6 +69,9 @@ h1 {
 	padding-top: 30px;
 }
 
+
+/* cards 
+styling front and back */
 .card {
 	position: relative;
 	width: 80px;
@@ -82,13 +96,13 @@ h1 {
 	height: 100%;
 }
 
-.card .front-side {
+div.card .front-side {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: red;
+	background-color: red !important;
 	backface-visibility: hidden;
 }
 
@@ -98,6 +112,13 @@ h1 {
 	background-color: white;
 }
 
+.card.matched {
+	visibility: hidden;
+}
+
+
+/* responsiveness 
+makes grid smaller and keeps the 8x5 grid */
 @media screen and (max-width: 900px) {
 	#grid-container {
 		gap: 5px;

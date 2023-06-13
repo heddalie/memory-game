@@ -1,12 +1,28 @@
 console.log('JavaScript code loaded');
+// keeping this until i don't have problems anymore
 
+//append generated cards
 const gridContainer = document.getElementById('grid-container');
+
+//representing the restart button
 const restartButton = document.querySelector('.restart-button');
+
+const timerValue = document.getElementById("time");
+
+//initializing emty arrays/variables
 let openedCards = [];
 let score = 0;
 
+//initializing time variables
+let seconds = 0;
+let minutes = 0;
+let timerStarted = false;
+let timerInterval;
+
+//invoke restart game function when button is clicked
 restartButton.addEventListener('click', restartGame);
 
+//path to pngs/symbols
 const symbols = [
   'symbols/Symbol-1.png',
   'symbols/Symbol-2.png',
@@ -30,15 +46,20 @@ const symbols = [
   'symbols/Symbol-20.png'
 ];
 
-const cards = symbols.concat(symbols); // duplicate the symbols array to get the pairs
+//creates array & pairs
+const cards = symbols.concat(symbols);
 
-shuffle(cards); // shuffle the array randomly
+//shuffle cards array randomly
+shuffle(cards);
 
+//creates card element for each symbol
 for (let i = 0; i < cards.length; i++) {
   const card = createCard(cards[i]);
   gridContainer.appendChild(card);
 }
 
+//creates card element with front and backside
+//symbol applies on backside of card
 function createCard(symbol) {
   const card = document.createElement('div');
   card.classList.add('card');
@@ -52,8 +73,15 @@ function createCard(symbol) {
   backSide.style.backgroundImage = `url(${symbol})`;
   card.appendChild(backSide);
   
+  /* checks if the card is not flipped
+  number of openend cards is < 2 
+  card is flipped */
   card.addEventListener('click', function () {
     if (!card.classList.contains('flip') && openedCards.length < 2) {
+      if (!timerStarted) {
+        timerStarted = true;
+        timerInterval = setInterval(timeGenerator, 1000);
+      }
       card.classList.add('flip');
       openedCards.push(card);
       if (openedCards.length === 2) {
@@ -68,6 +96,9 @@ function createCard(symbol) {
   return card;
 }
 
+/* check if the symbols match, score increases by two
+if score = total numbers of cards, game restarts
+*/
 function checkMatchingCards() {
   const card1 = openedCards[0];
   const card2 = openedCards[1];
@@ -79,9 +110,13 @@ function checkMatchingCards() {
     updateScore(score);
     openedCards = [];
 
+    //hide if match
+    card1.classList.add('matched');
+    card2.classList.add('matched');
+
     if (score === cards.length) {
       setTimeout(function () {
-        alert('Congratulations! You won the game!');
+        alert('Congratulations! You won the game! Restart game?');
         restartGame();
       }, 500);
     }
@@ -94,11 +129,30 @@ function checkMatchingCards() {
   }
 }
 
+//updates text content of element id "score"
 function updateScore(score) {
   const scoreElement = document.getElementById('score');
   scoreElement.textContent = 'Score: ' + score;
 }
 
+
+
+//making the timer
+const timeGenerator = () => {
+  seconds += 1;
+  //minutes logic
+  if (seconds >= 60) {
+    minutes += 1;
+    seconds = 0;
+  }
+  //format time before displaying
+  let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
+  let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
+  timerValue.innerHTML = `<span>Time:</span>${minutesValue}:${secondsValue}`;
+};
+
+
+//resets game, shuffles cards, sets score to 0
 function restartGame() {
   openedCards = [];
   score = 0;
@@ -109,6 +163,13 @@ function restartGame() {
     item.remove();
   });
 
+  //clear timer interval
+  clearInterval(timerInterval);
+  seconds = 0;
+  minutes = 0;
+  timerStarted = false;
+  timerValue.innerHTML = "<span>Time:</span> 00:00";
+
   shuffle(cards);
 
   for (let i = 0; i < cards.length; i++) {
@@ -117,6 +178,8 @@ function restartGame() {
   }
 }
 
+
+//shuffles elements
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
