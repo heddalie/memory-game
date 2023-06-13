@@ -74,7 +74,7 @@ function createCard(symbol) {
   card.appendChild(backSide);
 
   card.addEventListener('click', function () {
-    if (!card.classList.contains('flip') && openedCards.length < 2) {
+    if (!card.classList.contains('flip') && !card.classList.contains('face-up') && openedCards.length < 2) {
       if (!timerStarted) {
         timerStarted = true;
         timerInterval = setInterval(timeGenerator, 1000);
@@ -84,11 +84,15 @@ function createCard(symbol) {
       if (openedCards.length === 2) {
         checkMatchingCards();
       }
+    } else if (card.classList.contains('flip') && !card.classList.contains('face-up')) {
+      // Do nothing if the card is already flipped and not face-up (matched)
+      return;
     } else {
       card.classList.remove('flip');
       openedCards.splice(openedCards.indexOf(card), 1);
     }
   });
+  
 
   return card;
 }

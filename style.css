@@ -83,6 +83,11 @@ styling front and back */
 	visibility: visible;
 }
 
+/* Disable clicking on face-up cards */
+.card.face-up {
+	pointer-events: none;
+}
+
 .card.flip .back-side {
 	transform: rotateY(180deg);
 	visibility: visible;
@@ -148,16 +153,16 @@ div.card .front-side {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-  }
-  
-  #overlay-score p {
+}
+
+#overlay-score p {
 	margin-right: 5px;
-  }
-  
-  #overlay-score::after {
+}
+
+#overlay-score::after {
 	content: "|";
 	margin-left: 10px;
-  }
+}
 
 #overlay-time {
 	margin-left: 5px;
