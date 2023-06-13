@@ -73,9 +73,6 @@ function createCard(symbol) {
   backSide.style.backgroundImage = `url(${symbol})`;
   card.appendChild(backSide);
 
-  /* checks if the card is not flipped
-  number of openend cards is < 2 
-  card is flipped */
   card.addEventListener('click', function () {
     if (!card.classList.contains('flip') && openedCards.length < 2) {
       if (!timerStarted) {
@@ -108,20 +105,29 @@ function checkMatchingCards() {
   if (symbol1 === symbol2) {
     score += 2;
     updateScore(score);
+
+    // Hide matching cards immediately without delay
+    card1.style.opacity = '0';
+    card2.style.opacity = '0';
+
     openedCards = [];
 
-    //hide if match
-    card1.classList.add('matched');
-    card2.classList.add('matched');
-
-    //overlay after winning a game
+    // Overlay after winning a game
     if (score === cards.length) {
       showOverlay();
     }
   } else {
+    // Temporarily disable cards
+    gridContainer.classList.add('no-click');
+
     setTimeout(function () {
+      // Flip unmatched cards back
       card1.classList.remove('flip');
       card2.classList.remove('flip');
+
+      // Enable card clicks again
+      gridContainer.classList.remove('no-click');
+
       openedCards = [];
     }, 800);
   }

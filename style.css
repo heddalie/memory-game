@@ -80,6 +80,11 @@ styling front and back */
 	cursor: pointer;
 	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 	background-color: red;
+	visibility: visible;
+}
+
+.card.hidden {
+	visibility: hidden;
 }
 
 .card.flip .back-side {
