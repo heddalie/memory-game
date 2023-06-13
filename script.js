@@ -114,7 +114,8 @@ function checkMatchingCards() {
 
     // Overlay after winning a game
     if (score === cards.length) {
-      showOverlay();
+      clearInterval(timerInterval);
+      showOverlayWithDelay();
     }
   } else {
     // Temporarily disable cards
@@ -131,6 +132,14 @@ function checkMatchingCards() {
       openedCards = [];
     }, 800);
   }
+}
+
+function showOverlayWithDelay() {
+  setTimeout(function () {
+    document.getElementById('overlay-score').textContent = 'Score: ' + score;
+    document.getElementById('overlay-time').textContent = timerValue.textContent;
+    showOverlay();
+  }, 500);
 }
 
 //updates text content of element id "score"
@@ -152,7 +161,7 @@ const timeGenerator = () => {
   //format time before displaying
   let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
   let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
-  timerValue.innerHTML = `<span>Time:</span>${minutesValue}:${secondsValue}`;
+  timerValue.innerHTML = `<span>Time: </span>${minutesValue}:${secondsValue}`;
 };
 
 
