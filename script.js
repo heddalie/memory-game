@@ -143,7 +143,7 @@ function showOverlayWithDelay() {
     document.getElementById('overlay-score').textContent = 'Score: ' + score;
     document.getElementById('overlay-time').textContent = timerValue.textContent;
     showOverlay();
-  }, 500);
+  }, 450);
 }
 
 //updates text content of element id "score"
