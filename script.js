@@ -70,29 +70,29 @@ function createCard(symbol) {
 
   const backSide = document.createElement('div');
   backSide.classList.add('back-side');
-  backSide.style.backgroundImage = `url(${symbol})`;
   card.appendChild(backSide);
 
   card.addEventListener('click', function () {
-    if (!card.classList.contains('flip') && !card.classList.contains('face-up') && openedCards.length < 2) {
+    if (!card.classList.contains('card-flipped') && !card.classList.contains('face-up') && openedCards.length < 2) {
       if (!timerStarted) {
         timerStarted = true;
         timerInterval = setInterval(timeGenerator, 1000);
       }
-      card.classList.add('flip');
+      card.classList.add('card-flipped');
       openedCards.push(card);
       if (openedCards.length === 2) {
         checkMatchingCards();
       }
-    } else if (card.classList.contains('flip') && !card.classList.contains('face-up')) {
+    } else if (card.classList.contains('card-flipped') && !card.classList.contains('face-up')) {
       // Do nothing if the card is already flipped and not face-up (matched)
       return;
     } else {
-      card.classList.remove('flip');
+      card.classList.remove('card-flipped');
       openedCards.splice(openedCards.indexOf(card), 1);
     }
   });
-  
+
+  card.setAttribute('data-symbol', symbol);
 
   return card;
 }
@@ -110,10 +110,6 @@ function checkMatchingCards() {
     score += 2;
     updateScore(score);
 
-    // Hide matching cards immediately without delay
-    card1.style.opacity = '0';
-    card2.style.opacity = '0';
-
     openedCards = [];
 
     // Overlay after winning a game
@@ -122,21 +118,10 @@ function checkMatchingCards() {
       showOverlayWithDelay();
     }
   } else {
-    // Temporarily disable cards
-    gridContainer.classList.add('no-click');
-
-    setTimeout(function () {
-      // Flip unmatched cards back
-      card1.classList.remove('flip');
-      card2.classList.remove('flip');
-
-      // Enable card clicks again
-      gridContainer.classList.remove('no-click');
 
       openedCards = [];
-    }, 800);
+    } 800;
   }
-}
 
 function showOverlayWithDelay() {
   setTimeout(function () {
