@@ -25,35 +25,40 @@ restartButton.addEventListener('click', restartGame);
 
 //path to pngs/symbols
 const symbols = [
-  { name: "pic1", image: 'symbols/Symbol-1.png'},
-  { name: "pic2", image: 'symbols/Symbol-2.png'},
-  { name: "pic3", image: 'symbols/Symbol-3.png'},
-  { name: "pic4", image: 'symbols/Symbol-4.png'},
-  { name: "pic5", image: 'symbols/Symbol-5.png'},
-  { name: "pic6", image: 'symbols/Symbol-6.png'},
-  { name: "pic7", image: 'symbols/Symbol-7.png'},
-  { name: "pic8", image: 'symbols/Symbol-8.png'},
-  { name: "pic9", image: 'symbols/Symbol-9.png'},
-  { name: "pic10", image: 'symbols/Symbol-10.png'},
-  { name: "pic11", image: 'symbols/Symbol-11.png'},
-  { name: "pic12", image: 'symbols/Symbol-12.png'},
-  { name: "pic13", image: 'symbols/Symbol-13.png'},
-  { name: "pic14", image: 'symbols/Symbol-14.png'},
-  { name: "pic15", image: 'symbols/Symbol-15.png'},
-  { name: "pic16", image: 'symbols/Symbol-16.png'},
-  { name: "pic17", image: 'symbols/Symbol-17.png'},
-  { name: "pic18", image: 'symbols/Symbol-18.png'},
-  { name: "pic19", image: 'symbols/Symbol-19.png'},
-  { name: "pic20", image: 'symbols/Symbol-20.png'}
+  { name: "pic1", image: 'symbols/Symbol-1.png' },
+  { name: "pic2", image: 'symbols/Symbol-2.png' },
+  { name: "pic3", image: 'symbols/Symbol-3.png' },
+  { name: "pic4", image: 'symbols/Symbol-4.png' },
+  { name: "pic5", image: 'symbols/Symbol-5.png' },
+  { name: "pic6", image: 'symbols/Symbol-6.png' },
+  { name: "pic7", image: 'symbols/Symbol-7.png' },
+  { name: "pic8", image: 'symbols/Symbol-8.png' },
+  { name: "pic9", image: 'symbols/Symbol-9.png' },
+  { name: "pic10", image: 'symbols/Symbol-10.png' },
+  { name: "pic11", image: 'symbols/Symbol-11.png' },
+  { name: "pic12", image: 'symbols/Symbol-12.png' },
+  { name: "pic13", image: 'symbols/Symbol-13.png' },
+  { name: "pic14", image: 'symbols/Symbol-14.png' },
+  { name: "pic15", image: 'symbols/Symbol-15.png' },
+  { name: "pic16", image: 'symbols/Symbol-16.png' },
+  { name: "pic17", image: 'symbols/Symbol-17.png' },
+  { name: "pic18", image: 'symbols/Symbol-18.png' },
+  { name: "pic19", image: 'symbols/Symbol-19.png' },
+  { name: "pic20", image: 'symbols/Symbol-20.png' }
 ];
 
-// Pick random objects from the items array
+//game is initially stated when reloading page, including animation
+window.onload = () => {
+  matrixGenerator(generateRandom());
+}
+
+//pick random objects from the items array
 const generateRandom = () => {
-  // temporary array
+  //temporary array
   let tempArray = [...symbols];
-  // initializes cardValues array
+  //initializes cardValues array
   let cardValues = [];
-  // Random object selection
+  //random object selection
   for (let i = 0; i < 40; i++) {
     const randomIndex = Math.floor(Math.random() * tempArray.length);
     cardValues.push(tempArray[randomIndex]);
@@ -66,25 +71,24 @@ const generateRandom = () => {
 const matrixGenerator = (cardValues) => {
   gridContainer.innerHTML = "";
   cardValues = [...cardValues, ...cardValues];
-  // simple shuffle
+  //shuffle
   cardValues.sort(() => Math.random() - 0.5);
   for (let i = 0; i < 40; i++) {
-    /*
-        Create Cards
-        before => front side (contains question mark)
-        after => back side (contains actual image);
-        data-card-values is a custom attribute which stores the names of the cards to match later
-      */
+    //create Cards
+    //data-card-values stores card names to match later
     const card = createCard(cardValues[i]);
+    //add animation class to each card
+    card.classList.add("deal-animation");
     gridContainer.appendChild(card);
+    //remove animation class after short delay
+    setTimeout(() => {
+      card.classList.remove("deal-animation");
+    }, 1000);
   }
 };
 
 //creates array & pairs
 const cards = symbols.concat(symbols);
-
-//shuffle cards array randomly
-//shuffle(cards);
 
 //creates card element for each symbol
 for (let i = 0; i < cards.length; i++) {

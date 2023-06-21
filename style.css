@@ -70,6 +70,21 @@ sets columns to 8 and rows to 5 */
 }
 
 
+/* add intitial dealing animation */
+.deal-animation {
+	animation: deal 0.3s ease;
+}
+
+@keyframes deal {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+
 /* cards 
 styling front and back */
 .card {
