@@ -161,8 +161,8 @@ function checkMatchingCards() {
 
     //hide the matched cards after a delay of 0.3 sec
     setTimeout(() => {
-      card1.style.display = "none";
-      card2.style.display = "none";
+      card1.style.opacity = '0';
+      card2.style.opacity = '0';
     }, 300);
 
     // adds overlay if score is 40 (same as card length)
