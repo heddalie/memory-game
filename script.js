@@ -97,9 +97,8 @@ function createCard(symbol) {
   return card;
 }
 
-/* check if the symbols match, score increases by two
-if score = total numbers of cards, game restarts
-*/
+//check if the symbols match, score increases by two
+//if score = total numbers of cards, game restarts
 function checkMatchingCards() {
   const card1 = openedCards[0];
   const card2 = openedCards[1];
@@ -123,6 +122,8 @@ function checkMatchingCards() {
     } 800;
   }
 
+
+//overlay with 0.45 sec delay function
 function showOverlayWithDelay() {
   setTimeout(function () {
     document.getElementById('overlay-score').textContent = 'Score: ' + score;
