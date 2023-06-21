@@ -82,7 +82,7 @@ styling front and back */
 	visibility: visible;
 	transform-style: preserve-3d;
 	/* enable 3D transforms */
-	transition: transform 0.6s;
+	transition: transform 0.3s;
 	/* transition effect for the flip animation */
 }
 
@@ -96,12 +96,12 @@ styling front and back */
 	/* flip the card to show the backside */
 }
 
-.card.flip .back-side {
+.card.flipped .card-back {
 	transform: rotateY(180deg);
 	visibility: visible;
 }
 
-.card .front-side {
+.card .card-front {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -110,13 +110,17 @@ styling front and back */
 	background-color: red;
 	backface-visibility: hidden;
 	border-radius: 20%;
-}
-
-.card .back-side {
+  }
+  
+  .card .card-back {
 	background-size: cover;
 	background-position: center;
 	border-radius: 20%;
-}
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-repeat: no-repeat;
+  }
 
 
 /* overlay */

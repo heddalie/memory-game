@@ -64,27 +64,33 @@ function createCard(symbol) {
   const card = document.createElement('div');
   card.classList.add('card');
 
+  //creates frontside of cards
   const frontSide = document.createElement('div');
-  frontSide.classList.add('front-side');
+  frontSide.classList.add('card-front');
   card.appendChild(frontSide);
 
+
+  //creates backside of cards
   const backSide = document.createElement('div');
-  backSide.classList.add('back-side');
+  backSide.classList.add('card-back');
+  backSide.style.backgroundImage = `url(${symbol})`;
   card.appendChild(backSide);
 
+  //click is added to the card element
+  //when a card is clicked, the function is executed
   card.addEventListener('click', function () {
     if (!card.classList.contains('card-flipped') && !card.classList.contains('face-up') && openedCards.length < 2) {
       if (!timerStarted) {
         timerStarted = true;
         timerInterval = setInterval(timeGenerator, 1000);
       }
-      card.classList.add('flipped');
+      card.classList.add('card-flipped');
       openedCards.push(card);
       if (openedCards.length === 2) {
         setTimeout(checkMatchingCards, 800);
       }
     } else if (card.classList.contains('card-flipped') && !card.classList.contains('face-up')) {
-      // Do nothing if the card is already flipped and not face-up (matched)
+      //do nothing if the card is already flipped and not face-up (matched)
       return;
     } else {
       card.classList.remove('card-flipped');
@@ -102,25 +108,34 @@ function createCard(symbol) {
 function checkMatchingCards() {
   const card1 = openedCards[0];
   const card2 = openedCards[1];
-  const symbol1 = card1.querySelector('.back-side').style.backgroundImage;
-  const symbol2 = card2.querySelector('.back-side').style.backgroundImage;
+  const symbol1 = card1.querySelector('.card-back').style.backgroundImage; 
+  const symbol2 = card2.querySelector('.card-back').style.backgroundImage; 
 
   if (symbol1 === symbol2) {
+    //cards match
     score += 2;
     updateScore(score);
 
+    card1.style.opacity = '0';
+    card2.style.opacity = '0';
+
     openedCards = [];
 
-    // Overlay after winning a game
-    if (score === cards.length) {
+    //check for a win condition
+    const faceUpCards = document.querySelectorAll('.card.face-up');
+    if (faceUpCards.length === cards.length) {
+      //all cards have been matched, trigger the win condition
       clearInterval(timerInterval);
       showOverlayWithDelay();
     }
   } else {
-
+    setTimeout(function () {
+      card1.classList.remove('card-flipped');
+      card2.classList.remove('card-flipped');
       openedCards = [];
-    } 800;
+    }, 800);
   }
+}
 
 
 //overlay with 0.45 sec delay function
