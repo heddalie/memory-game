@@ -160,8 +160,8 @@ function checkMatchingCards() {
     openedCards = [];
 
     //if both card match, add "matched" class
-    card1.classList.add("matched");
-    card2.classList.add("matched");
+    card1.classList.add("matched", "match-animation");
+    card2.classList.add("matched", "match-animation");
 
     //hide the matched cards after a delay of 0.3 sec
     setTimeout(() => {
@@ -230,11 +230,6 @@ function restartGame() {
   score = 0;
   updateScore(score);
 
-  // const gridItems = document.querySelectorAll('.card');
-  // gridItems.forEach(function (item) {
-  //   item.remove();
-  // });
-
   //clear timer interval
   clearInterval(timerInterval);
   seconds = 0;
@@ -249,15 +244,6 @@ function restartGame() {
   //hide overlay when restarting the game
   hideOverlay();
 }
-
-
-//shuffles elements
-// function shuffle(array) {
-//   for (let i = array.length - 1; i > 0; i--) {
-//     const j = Math.floor(Math.random() * (i + 1));
-//     [array[i], array[j]] = [array[j], array[i]];
-//   }
-// }
 
 //overlay
 const overlayContainer = document.getElementById("overlay-container");
