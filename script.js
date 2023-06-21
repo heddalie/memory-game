@@ -78,10 +78,10 @@ function createCard(symbol) {
         timerStarted = true;
         timerInterval = setInterval(timeGenerator, 1000);
       }
-      card.classList.add('card-flipped');
+      card.classList.add('flipped');
       openedCards.push(card);
       if (openedCards.length === 2) {
-        checkMatchingCards();
+        setTimeout(checkMatchingCards, 800);
       }
     } else if (card.classList.contains('card-flipped') && !card.classList.contains('face-up')) {
       // Do nothing if the card is already flipped and not face-up (matched)
