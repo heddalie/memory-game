@@ -82,7 +82,7 @@ styling front and back */
 	visibility: visible;
 	transform-style: preserve-3d;
 	/* enable 3D transforms */
-	transition: transform 0.6s;
+	transition: transform 0.3s;
 	/* transition effect for the flip animation */
 }
 

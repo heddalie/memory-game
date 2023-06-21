@@ -149,17 +149,31 @@ function checkMatchingCards() {
   const symbol2 = card2.getAttribute('data-name');
 
   if (symbol1 === symbol2) {
+    //adds points for matching cards
     score += 2;
     updateScore(score);
 
     openedCards = [];
 
-    // Overlay after winning a game
+    //if both card match, add "matched" class
+    card1.classList.add("matched");
+    card2.classList.add("matched");
+
+    //hide the matched cards after a delay of 0.3 sec
+    setTimeout(() => {
+      card1.style.display = "none";
+      card2.style.display = "none";
+    }, 300);
+
+    // adds overlay if score is 40 (same as card length)
     if (score === cards.length) {
       clearInterval(timerInterval);
       showOverlayWithDelay();
     }
   } else {
+    //flips back cards if they're not matching
+    //removes background image
+    //with delay of 0.6 sec
     setTimeout(() => {
       card1.classList.remove('flipped');
       card2.classList.remove('flipped');
