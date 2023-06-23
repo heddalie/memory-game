@@ -56,11 +56,9 @@ to stay on the same line */
 
 
 /* grid container
-sets columns to 8 and rows to 5 */
+styling and aligning the game */
 #grid-container {
 	display: grid;
-	grid-template-columns: repeat(8, 1fr);
-	grid-template-rows: repeat(5, 1fr);
 	gap: 10px;
 	max-width: 90vw;
 	max-height: 90vh;
@@ -154,7 +152,8 @@ styling front and back */
 }
 
 
-/* overlay */
+/* overlay 
+z-index makes sure that the container is stacked behind the content*/
 #overlay-container {
 	display: none;
 	position: fixed;
