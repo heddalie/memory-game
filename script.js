@@ -177,8 +177,9 @@ function checkMatchingCards() {
     //logging the match in console
     console.log("Two cards matched.")
 
-    // adds overlay with delay if score is 40 (same as card length)
-    if (score === cards.length) {
+    //adds overlay with delay if score is 40
+    //if i had more cards/levels i could write cards.length instead of 40
+    if (score === 40) {
       clearInterval(timerInterval);
       showOverlayWithDelay();
     }
