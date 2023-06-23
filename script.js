@@ -1,7 +1,3 @@
-console.log('JavaScript code loaded');
-// keeping this until i don't have problems anymore
-
-
 //append generated cards
 const gridContainer = document.getElementById('grid-container');
 
@@ -187,7 +183,7 @@ function checkMatchingCards() {
       imgElement2.style.backgroundImage = '';
 
       openedCards = [];
-    }, 800);
+    }, 600);
   }
 }
 

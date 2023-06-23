@@ -34,7 +34,7 @@ h1 {
 
 
 /* styling score and timer 
-i want them next to each other */
+to stay on the same line */
 #score-timer-container {
 	display: flex;
 	align-items: center;
@@ -70,9 +70,10 @@ sets columns to 8 and rows to 5 */
 }
 
 
-/* intitial dealing animation */
+/* intitial dealing animation 
+scales cards in */
 .deal-animation {
-	animation: deal 0.3s ease;
+	animation: deal 0.5s ease;
 }
 
 @keyframes deal {
@@ -84,7 +85,8 @@ sets columns to 8 and rows to 5 */
 	}
 }
 
-/* animation for matching cards */
+/* animation for matching cards 
+scales up before disappearing */
 .match-animation{
 	animation: cardMatchAnimation 0.3s;
 }
