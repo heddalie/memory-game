@@ -59,6 +59,8 @@ to stay on the same line */
 styling and aligning the game */
 #grid-container {
 	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(5, 1fr);
 	gap: 10px;
 	max-width: 90vw;
 	max-height: 90vh;
