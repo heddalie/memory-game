@@ -2,29 +2,38 @@
 <html>
 
 <head>
+  <!-- Title and links -->
   <title>MEMORY game</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
+  <!-- Restart button -->
   <div class="restart">
     <button class="restart-button">
       <img src="symbols/restartButton.png" alt="Restart Button">
     </button>
   </div>
+
+  <!-- Header and text -->
   <h1>MEMORY</h1>
   <div id="score-timer-container">
     <div id="score">Score: 0</div>
     <div id="time">Time: 00:00</div>
   </div>
 
+  <!-- Game -->
   <div id="grid-container"></div>
 
+  <!-- Overlay (game over) -->
   <div id="overlay-container">
     <div id="overlay-content">
+      <!-- Restart -->
       <button id="overlay-restart" class="restart-button">
         <img src="symbols/restartButton.png" alt="Restart Button">
       </button>
+      <!-- Overlay text -->
       <h2>CONGRATULATIONS, <br> you won!</h2>
       <div id="overlay-score-time">
         <p><span id="overlay-score"></span></p>
@@ -33,7 +42,9 @@
     </div>
   </div>
 
+  <!-- link to js file -->
   <script src="script.js"></script>
+
 </body>
 
 </html>
