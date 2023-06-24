@@ -145,7 +145,7 @@ function createCard(symbol) {
   //returns card element
   card.setAttribute('data-name', symbol.image);
   return card;
-}
+};
 
 
 //check if the symbols match, score increases by two
@@ -198,7 +198,7 @@ function checkMatchingCards() {
       openedCards = [];
     }, 600);
   }
-}
+};
 
 
 //overlay with 0.45 sec delay function
@@ -211,13 +211,13 @@ function showOverlayWithDelay() {
     //log
     console.log("Overlay shown.")
   }, 450);
-}
+};
 
 //updates text content of element id "score"
 function updateScore(score) {
   const scoreElement = document.getElementById('score');
   scoreElement.textContent = 'Score: ' + score;
-}
+};
 
 
 
@@ -258,7 +258,7 @@ function restartGame() {
 
   //logging the restart
   console.log("Game restarted.")
-}
+};
 
 //overlay
 const overlayContainer = document.getElementById("overlay-container");
@@ -270,9 +270,9 @@ overlayRestartButton.addEventListener("click", restartGame);
 // Show overlay function
 function showOverlay() {
   overlayContainer.style.display = "flex";
-}
+};
 
 // Hide overlay function
 function hideOverlay() {
   overlayContainer.style.display = "none";
-}
+};

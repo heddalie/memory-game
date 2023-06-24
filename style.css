@@ -60,7 +60,7 @@ styling and aligning the game */
 #grid-container {
 	display: grid;
 	grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+	grid-template-rows: repeat(5, 1fr);
 	gap: 10px;
 	max-width: 90vw;
 	max-height: 90vh;
@@ -80,6 +80,7 @@ scales cards in */
 	0% {
 		transform: scale(0);
 	}
+
 	100% {
 		transform: scale(1);
 	}
@@ -87,7 +88,7 @@ scales cards in */
 
 /* animation for matching cards 
 scales up before disappearing */
-.match-animation{
+.match-animation {
 	animation: cardMatchAnimation 0.3s;
 }
 
@@ -95,9 +96,11 @@ scales up before disappearing */
 	0% {
 		transform: scale(0);
 	}
+
 	50% {
 		transform: scale(1.2);
 	}
+
 	100% {
 		transform: scale(1);
 	}
